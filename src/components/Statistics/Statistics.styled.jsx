@@ -12,7 +12,7 @@ export const StatisticsItem = styled.li`
   }
 `;
 
-export const StatisticsInfo = styled.p`
+export const StatisticsText = styled.p`
   font-family: "Montserrat";
 
   font-style: normal;

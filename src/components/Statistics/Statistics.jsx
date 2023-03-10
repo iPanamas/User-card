@@ -1,19 +1,26 @@
 import {
   StatisticsWrapper,
   StatisticsItem,
-  StatisticsInfo,
+  StatisticsText,
 } from "./Statistics.styled";
 
-export const Statistics = () => {
+export const Statistics = (props) => {
+  const statisticsValue = Object.entries(props).map((entry) => ({
+    [entry[0]]: entry[1],
+  }));
+
+  const numberWithSpaces = (x) =>
+    x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   return (
     <StatisticsWrapper>
-      <StatisticsItem>
-        <StatisticsInfo>777 tweets</StatisticsInfo>
-      </StatisticsItem>
-
-      <StatisticsItem>
-        <StatisticsInfo>100,500 Followers</StatisticsInfo>
-      </StatisticsItem>
+      {statisticsValue.map((value) => (
+        <StatisticsItem key={Object.values(value)}>
+          <StatisticsText>
+            {numberWithSpaces(Object.values(value))} {Object.keys(value)}
+          </StatisticsText>
+        </StatisticsItem>
+      ))}
     </StatisticsWrapper>
   );
 };

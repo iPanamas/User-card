@@ -7,8 +7,7 @@ export const Card = styled.div`
   background-position: top 28px center, center;
   background-repeat: no-repeat;
 
-  max-width: 380px;
-  margin: 0 auto;
+  min-width: 380px;
   padding-top: 284px;
   padding-bottom: 36px;
 
