@@ -1,8 +1,9 @@
 import { Button } from "./CardButton.styled";
+import { useState } from "react";
 
-export const CardButton = ({ click, isFollow }) => {
+export const CardButton = ({ handleFollow, isFollow }) => {
   return (
-    <Button onClick={click} isFollow={isFollow}>
+    <Button onClick={handleFollow} isFollow={isFollow}>
       {isFollow ? "Following" : "Follow"}
     </Button>
   );

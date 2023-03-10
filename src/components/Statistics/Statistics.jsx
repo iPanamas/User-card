@@ -1,26 +1,44 @@
+import { useEffect, useState } from "react";
+
+// COMPONENTS
+import { CardButton } from "../Button/CardButton";
 import {
   StatisticsWrapper,
   StatisticsItem,
   StatisticsText,
 } from "./Statistics.styled";
 
-export const Statistics = (props) => {
-  const statisticsValue = Object.entries(props).map((entry) => ({
-    [entry[0]]: entry[1],
-  }));
+// UTILS
+import { numberWithComma } from "../../utils/addCommaInNumber";
 
-  const numberWithSpaces = (x) =>
-    x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export const Statistics = ({ tweets, followers }) => {
+  const [userTweets, setUserTweets] = useState(tweets);
+  const [userFollowers, setUserFollowers] = useState(followers);
+  const [isFollow, setIsFollow] = useState(false);
+
+  const handleFollow = async () => {
+    setIsFollow(!isFollow);
+
+    !isFollow
+      ? setUserFollowers(userFollowers + 1)
+      : setUserFollowers(userFollowers - 1);
+  };
 
   return (
-    <StatisticsWrapper>
-      {statisticsValue.map((value) => (
-        <StatisticsItem key={Object.values(value)}>
+    <>
+      <StatisticsWrapper>
+        <StatisticsItem>
+          <StatisticsText>{userTweets} tweets</StatisticsText>
+        </StatisticsItem>
+
+        <StatisticsItem>
           <StatisticsText>
-            {numberWithSpaces(Object.values(value))} {Object.keys(value)}
+            {numberWithComma(userFollowers)} followers
           </StatisticsText>
         </StatisticsItem>
-      ))}
-    </StatisticsWrapper>
+      </StatisticsWrapper>
+
+      <CardButton handleFollow={handleFollow} isFollow={isFollow} />
+    </>
   );
 };
