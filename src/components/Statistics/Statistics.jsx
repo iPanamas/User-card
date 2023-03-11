@@ -10,49 +10,40 @@ import {
 } from "./Statistics.styled";
 
 // UTILS
-import { numberWithComma } from "../../utils/addCommaInNumber";
+import { numberWithDelimiter } from "../../utils/numberWithDelimiter";
 
 export const Statistics = ({ id, tweets, followers }) => {
-  const [userTweets, setUserTweets] = useState(tweets);
-  // const [userFollowers, setUserFollowers] = useLocalStorage(
-  //   "followers",
-  //   followers
-  // );
+  const [cardInfo, setCardInfo] = useLocalStorage("cardInfo", [
+    { id, tweets, followers, isFollow: false },
+  ]);
 
-  const [isFollow, setIsFollow] = useState(false);
-
-  const [cardInfo, setCardInfo] = useLocalStorage("cardInfo", {
-    id,
-    tweets,
-    followers,
-    isFollow,
-  });
-
-  const handleFollow = async () => {
-    setIsFollow(!isFollow);
-
-    !isFollow
-      ? setUserFollowers(followers + 1)
-      : setUserFollowers(followers - 1);
+  const handleFollow = () => {
+    setCardInfo((state) =>
+      state.map((el) => {
+        if (el.id === id) {
+          return {
+            ...el,
+            isFollow: !el.isFollow,
+          };
+        }
+        return el;
+      })
+    );
   };
-
-  console.log(cardInfo);
 
   return (
     <>
       <StatisticsWrapper>
         <StatisticsItem>
-          <StatisticsText>{userTweets} tweets</StatisticsText>
+          <StatisticsText>{cardInfo.tweets} tweets</StatisticsText>
         </StatisticsItem>
 
         <StatisticsItem>
-          <StatisticsText>
-            {numberWithComma(cardInfo.followers)} followers
-          </StatisticsText>
+          <StatisticsText>{cardInfo.followers} followers</StatisticsText>
         </StatisticsItem>
       </StatisticsWrapper>
 
-      <CardButton handleFollow={handleFollow} isFollow={isFollow} />
+      <CardButton handleFollow={handleFollow} isFollow={cardInfo.isFollow} />
     </>
   );
 };
