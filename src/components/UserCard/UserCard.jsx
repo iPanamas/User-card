@@ -17,9 +17,13 @@ export const UserCard = () => {
       {userInfo.map((info) => (
         <Card key={info.id}>
           <Logo src="../images/logo.svg" alt="" />
-          <UserImage src="../images/user-image.png" />
+          <UserImage src="../images/user-image.png" alt="" />
           <LineCard />
-          <Statistics tweets={info.tweets} followers={info.followers} />
+          <Statistics
+            id={info.id}
+            tweets={info.tweets}
+            followers={info.followers}
+          />
         </Card>
       ))}
     </>

@@ -5,12 +5,5 @@
     "tweets": 777,
     "followers": 100500,
     "avatar": "url.jpg"
-  },
-  {
-    "id": 2,
-    "user": "Elon Reeve Musk",
-    "tweets": 777,
-    "followers": 11412321,
-    "avatar": "url.jpg"
   }
 ]
