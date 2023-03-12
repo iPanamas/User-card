@@ -12,38 +12,18 @@ import {
 // UTILS
 import { numberWithDelimiter } from "../../utils/numberWithDelimiter";
 
-export const Statistics = ({ id, tweets, followers }) => {
-  const [cardInfo, setCardInfo] = useLocalStorage("cardInfo", [
-    { id, tweets, followers, isFollow: false },
-  ]);
-
-  const handleFollow = () => {
-    setCardInfo((state) =>
-      state.map((el) => {
-        if (el.id === id) {
-          return {
-            ...el,
-            isFollow: !el.isFollow,
-          };
-        }
-        return el;
-      })
-    );
-  };
-
+export const Statistics = ({ tweets, followers, isFollow }) => {
   return (
     <>
       <StatisticsWrapper>
         <StatisticsItem>
-          <StatisticsText>{cardInfo.tweets} tweets</StatisticsText>
+          <StatisticsText>{tweets} tweets</StatisticsText>
         </StatisticsItem>
 
         <StatisticsItem>
-          <StatisticsText>{cardInfo.followers} followers</StatisticsText>
+          <StatisticsText>{followers} followers</StatisticsText>
         </StatisticsItem>
       </StatisticsWrapper>
-
-      <CardButton handleFollow={handleFollow} isFollow={cardInfo.isFollow} />
     </>
   );
 };
