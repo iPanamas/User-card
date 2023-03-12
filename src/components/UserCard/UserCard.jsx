@@ -1,34 +1,43 @@
-import { Card, Logo, UserImage, LineCard } from "./UserCard.styled";
-import { Statistics } from "../Statistics/Statistics";
-import { CardButton } from "../Button/CardButton";
-import usersDB from "../../../usersDB.json";
-
 import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
+import usersDB from "../../usersDB.json";
+// COMPONENTS
+import {
+  CardList,
+  CardItem,
+  Logo,
+  UserImage,
+  LineCard,
+} from "./UserCard.styled";
+import { Statistics } from "../Statistics/Statistics";
+import { CardButton } from "../CardButton/CardButton";
 
 export const UserCard = () => {
-  const [userInfo, setUserInfo] = useState([]);
-  const [storage, setStorage] = useLocalStorage("followers", {});
+  const [statistics, setStatistics] = useState([]);
+  const [storageStatistics, setStorageStatistics] = useLocalStorage(
+    "followers",
+    {}
+  );
 
   useEffect(() => {
-    setUserInfo(usersDB);
+    setStatistics(usersDB);
   }, []);
 
   const followButtonHandler = (id, followers) => {
-    if (!storage[id]) {
-      setStorage((prevState) => ({
+    if (!storageStatistics[id]) {
+      setStorageStatistics((prevState) => ({
         ...prevState,
         ...{ [id]: { followers: followers + 1, isFollow: true } },
       }));
     } else {
-      setStorage((prevState) => ({
+      setStorageStatistics((prevState) => ({
         ...prevState,
         ...{
           [id]: {
-            followers: storage[id].isFollow
-              ? storage[id].followers - 1
-              : storage[id].followers + 1,
-            isFollow: !storage[id].isFollow,
+            followers: storageStatistics[id].isFollow
+              ? storageStatistics[id].followers - 1
+              : storageStatistics[id].followers + 1,
+            isFollow: !storageStatistics[id].isFollow,
           },
         },
       }));
@@ -36,22 +45,22 @@ export const UserCard = () => {
   };
 
   return (
-    <>
-      {userInfo.map(({ id, tweets, followers }) => (
-        <Card key={id}>
-          <Logo src="../images/logo.svg" alt="" />
-          <UserImage src="../images/user-image.png" alt="" />
+    <CardList>
+      {statistics.map(({ id, tweets, followers, avatar }) => (
+        <CardItem key={id}>
+          <Logo src="../images/logo.svg" alt="logo" />
+          <UserImage src={`../images/${avatar}.png`} alt="user-image" />
           <LineCard />
           <Statistics
             tweets={tweets}
-            followers={storage[id]?.followers || followers}
+            followers={storageStatistics[id]?.followers || followers}
           />
           <CardButton
             onClick={() => followButtonHandler(id, followers)}
-            isFollow={storage[id]?.isFollow}
+            isFollow={storageStatistics[id]?.isFollow}
           />
-        </Card>
+        </CardItem>
       ))}
-    </>
+    </CardList>
   );
 };

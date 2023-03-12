@@ -1,15 +1,23 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
+export const CardList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+`;
+
+export const CardItem = styled.li`
   position: relative;
   background: url("../images/card-bg.svg"),
     linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
   background-position: top 28px center, center;
   background-repeat: no-repeat;
 
-  min-width: 380px;
+  width: 380px;
   padding-top: 284px;
   padding-bottom: 36px;
+  text-align: center;
 
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
