@@ -8,34 +8,47 @@ import useLocalStorage from "use-local-storage";
 
 export const UserCard = () => {
   const [userInfo, setUserInfo] = useState([]);
+  const [storage, setStorage] = useLocalStorage("followers", {});
 
   useEffect(() => {
     setUserInfo(usersDB);
   }, []);
 
-  const followButtonHandler = (id) => {
-    setUserInfo(
-      userInfo.map((item) =>
-        item.id === id ? { ...item, isFollow: !item.isFollow } : item
-      )
-    );
+  const followButtonHandler = (id, followers) => {
+    if (!storage[id]) {
+      setStorage((prevState) => ({
+        ...prevState,
+        ...{ [id]: { followers: followers + 1, isFollow: true } },
+      }));
+    } else {
+      setStorage((prevState) => ({
+        ...prevState,
+        ...{
+          [id]: {
+            followers: storage[id].isFollow
+              ? storage[id].followers - 1
+              : storage[id].followers + 1,
+            isFollow: !storage[id].isFollow,
+          },
+        },
+      }));
+    }
   };
 
   return (
     <>
-      {userInfo.map(({ id, tweets, followers, isFollow }) => (
+      {userInfo.map(({ id, tweets, followers }) => (
         <Card key={id}>
           <Logo src="../images/logo.svg" alt="" />
           <UserImage src="../images/user-image.png" alt="" />
           <LineCard />
           <Statistics
             tweets={tweets}
-            followers={followers}
-            isFollow={isFollow}
+            followers={storage[id]?.followers || followers}
           />
           <CardButton
-            onClick={() => followButtonHandler(id)}
-            isFollow={isFollow}
+            onClick={() => followButtonHandler(id, followers)}
+            isFollow={storage[id]?.isFollow}
           />
         </Card>
       ))}

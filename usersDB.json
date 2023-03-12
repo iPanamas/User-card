@@ -1,18 +1,16 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "user": "Elon Reeve Musk",
     "tweets": 777,
     "followers": 100500,
-    "avatar": "url.jpg",
-    "isFollow": false
+    "avatar": "url.jpg"
   },
   {
-    "id": 2,
+    "id": "2",
     "user": "Elon Reeve Musk",
     "tweets": 132,
     "followers": 500,
-    "avatar": "url.jpg",
-    "isFollow": false
+    "avatar": "url.jpg"
   }
 ]

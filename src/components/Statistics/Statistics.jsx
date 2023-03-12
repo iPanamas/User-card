@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
-import useLocalStorage from "use-local-storage";
-
 // COMPONENTS
-import { CardButton } from "../Button/CardButton";
 import {
   StatisticsWrapper,
   StatisticsItem,
@@ -12,7 +8,7 @@ import {
 // UTILS
 import { numberWithDelimiter } from "../../utils/numberWithDelimiter";
 
-export const Statistics = ({ tweets, followers, isFollow }) => {
+export const Statistics = ({ tweets, followers }) => {
   return (
     <>
       <StatisticsWrapper>
@@ -21,7 +17,9 @@ export const Statistics = ({ tweets, followers, isFollow }) => {
         </StatisticsItem>
 
         <StatisticsItem>
-          <StatisticsText>{followers} followers</StatisticsText>
+          <StatisticsText>
+            {numberWithDelimiter(followers)} followers
+          </StatisticsText>
         </StatisticsItem>
       </StatisticsWrapper>
     </>
