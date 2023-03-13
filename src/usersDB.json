@@ -1,37 +1,44 @@
 [
   {
+    "id": "1",
     "user": "user 1",
     "tweets": 777,
     "followers": 100500,
-    "avatar": "avatar",
-    "id": "1"
+    "avatar": "avatar"
   },
   {
+    "id": "2",
     "user": "user 2",
     "tweets": 25,
     "followers": 3,
-    "avatar": "avatar",
-    "id": "2"
+    "avatar": "avatar"
   },
   {
+    "id": "3",
     "user": "user 3",
     "tweets": 55,
     "followers": 14,
-    "avatar": "avatar",
-    "id": "3"
+    "avatar": "avatar"
   },
   {
+    "id": "4",
     "user": "user 4",
     "tweets": 63,
     "followers": 4,
-    "avatar": "avatar",
-    "id": "4"
+    "avatar": "avatar"
   },
   {
+    "id": "5",
     "user": "user 5",
     "tweets": 21,
     "followers": 59,
-    "avatar": "avatar",
-    "id": "5"
+    "avatar": "avatar"
+  },
+  {
+    "id": "6",
+    "user": "user 6",
+    "tweets": 21,
+    "followers": 59,
+    "avatar": "avatar"
   }
 ]
