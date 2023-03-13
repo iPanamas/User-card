@@ -8,7 +8,7 @@ export const CardList = styled.ul`
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 20px;
   }
 `;
 
@@ -35,6 +35,7 @@ export const CardItem = styled.li`
   }
 
   @media (min-width: 1000px) {
+    margin-bottom: 0;
     width: 380px;
   }
 `;
