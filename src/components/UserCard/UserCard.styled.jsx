@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 export const CardList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  @media (min-width: 1000px) {
+    max-width: 850px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
 `;
 
 export const CardItem = styled.li`
@@ -13,14 +18,25 @@ export const CardItem = styled.li`
     linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
   background-position: top 28px center, center;
   background-repeat: no-repeat;
+  max-width: 380px;
+  margin: 0 auto;
 
-  width: 380px;
   padding-top: 284px;
   padding-bottom: 36px;
   text-align: center;
 
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
+
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 1000px) {
+    width: 380px;
+  }
 `;
 
 export const Logo = styled.img`

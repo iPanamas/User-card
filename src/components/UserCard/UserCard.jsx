@@ -27,18 +27,16 @@ export const UserCard = () => {
     if (!storageStatistics[id]) {
       setStorageStatistics((prevState) => ({
         ...prevState,
-        ...{ [id]: { followers: followers + 1, isFollow: true } },
+        [id]: { followers: followers + 1, isFollow: true },
       }));
     } else {
       setStorageStatistics((prevState) => ({
         ...prevState,
-        ...{
-          [id]: {
-            followers: storageStatistics[id].isFollow
-              ? storageStatistics[id].followers - 1
-              : storageStatistics[id].followers + 1,
-            isFollow: !storageStatistics[id].isFollow,
-          },
+        [id]: {
+          followers: storageStatistics[id].isFollow
+            ? storageStatistics[id].followers - 1
+            : storageStatistics[id].followers + 1,
+          isFollow: !storageStatistics[id].isFollow,
         },
       }));
     }
